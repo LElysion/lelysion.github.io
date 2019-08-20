@@ -1,0 +1,26 @@
+html, body, p, ul, li { padding: 0; margin: 0; }
+.container { display: flex; justify-content: center; align-items: center; width: 100vw; height: 100vh; background: #3e4452; }
+.now {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  text-align: center;
+  line-height: 400px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #f1f2fc;
+  border: 1px solid #eee;
+  text-shadow: 0 0 10px #eec;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #eec;
+  animation: nowKF 1.2s 0s infinite alternate;
+}
+
+@keyframes nowKF {
+  from {
+    box-shadow: 0 0 5px #eec;
+  }
+  to {
+    box-shadow: 0 0 20px #eec;
+  }
+}
