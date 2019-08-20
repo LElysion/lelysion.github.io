@@ -32,8 +32,8 @@ html, body, p, ul, li {
   border-radius: 50%;
   -webkit-box-shadow: 0 0 10px #eec;
           box-shadow: 0 0 10px #eec;
-  -webkit-animation: nowKF 1.2s 0s infinite alternate;
-          animation: nowKF 1.2s 0s infinite alternate;
+  -webkit-animation: nowKF 2.2s linear 0s infinite alternate;
+          animation: nowKF 2.2s linear 0s infinite alternate;
 }
 
 @-webkit-keyframes nowKF {
