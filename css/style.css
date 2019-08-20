@@ -3,6 +3,10 @@ html, body, p, ul, li {
   margin: 0;
 }
 
+body {
+  background: #3e4452;
+}
+
 .container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -15,16 +19,15 @@ html, body, p, ul, li {
           align-items: center;
   width: 100vw;
   height: 100vh;
-  background: #3e4452;
 }
 
 .now {
   position: relative;
-  width: 400px;
-  height: 400px;
+  width: 7.46667rem;
+  height: 7.46667rem;
   text-align: center;
-  line-height: 400px;
-  font-size: 18px;
+  line-height: 7.46667rem;
+  font-size: 0.34667rem;
   font-weight: bold;
   color: #f1f2fc;
   border: 1px solid #eee;

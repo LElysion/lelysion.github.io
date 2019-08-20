@@ -1,12 +1,17 @@
+@function rem($px) {
+  @return $px / 75 + rem
+}
+
 html, body, p, ul, li { padding: 0; margin: 0; }
-.container { display: flex; justify-content: center; align-items: center; width: 100vw; height: 100vh; background: #3e4452; }
+body { background: #3e4452;  }
+.container { display: flex; justify-content: center; align-items: center; width: 100vw; height: 100vh; }
 .now {
   position: relative;
-  width: 400px;
-  height: 400px;
+  width: rem(560);
+  height: rem(560);
   text-align: center;
-  line-height: 400px;
-  font-size: 18px;
+  line-height: rem(560);
+  font-size: rem(26);
   font-weight: bold;
   color: #f1f2fc;
   border: 1px solid #eee;
