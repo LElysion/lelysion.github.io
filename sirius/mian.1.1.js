@@ -1,4 +1,6 @@
 (function() {
+  let mode = 1;
+
   let canvas = document.getElementById('canvas');
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
@@ -6,6 +8,9 @@
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   }
+  canvas.addEventListener('click', function() {
+    mode = mode == 1 ? 2 : 1;
+  })
   let context = canvas.getContext('2d');
   let timer = null;
 
@@ -52,16 +57,18 @@
         let R = Math.floor(Math.random() * 255);
         let G = Math.floor(Math.random() * 255);
         let B = Math.floor(Math.random() * 255);
+        let radius = this.random(10, 35);
         res.push({
           x: this.random(0, this.getWidth()),
           y: this.random(0, this.getHeight()),
-          vx: 0.1,
-          vy: 0.1,
-          radius: this.random(10, 35),
+          vx: this.random(0.1, 1, 'FIXED'),
+          vy: this.random(0.1, 1, 'FIXED'),
+          radius: radius,
           color: `rgb(${R}, ${G}, ${B})`,
           startAngle: 0,//开始弧度
           endAngel: Math.PI*2,//结束弧度
           anticlockwise: true,//逆时针， false:顺时针
+          animateTimes: 0
         })
       }
       return res;
@@ -88,22 +95,49 @@
         _this.clearCanvas();
         circles.forEach(circle => {
           circle.animateTimes += 1;
-          circle.x += _this.random(0.05, 0.15, 'FIXED');
-          circle.y += _this.random(0.05, 0.15, 'FIXED');
+          circle.x += circle.vx;//_this.random(0.05, 0.15, 'FIXED');
+          circle.y += circle.vy;//_this.random(0.05, 0.15, 'FIXED');
           circle.globalAlpha -= _this.vglobalAlpha;
 
-          if(circle.x >= _this.getWidth() + circle.radius || circle.y < -circle.radius) {
-            let R = Math.floor(Math.random() * 255);
-            let G = Math.floor(Math.random() * 255);
-            let B = Math.floor(Math.random() * 255);
-            circle.radius = _this.random(10, 35)
-            circle.color = `rgb(${R}, ${G}, ${B})`
-            if(_this.random(0, 10) > 5) {
-              circle.x = _this.random(0, 0, 'FIXED') - circle.radius; 
-              circle.y = _this.random(0, _this.getHeight(), 'FIXED');
-            } else {
-              circle.y = _this.random(0, 0, 'FIXED') - circle.radius; 
-              circle.x = _this.random(0, _this.getWidth(), 'FIXED')
+          if(mode === 1) {
+            if(circle.x >= _this.getWidth() + circle.radius || circle.y < -circle.radius) {
+              let R = Math.floor(Math.random() * 255);
+              let G = Math.floor(Math.random() * 255);
+              let B = Math.floor(Math.random() * 255);
+              circle.radius = _this.random(10, 35)
+              circle.color = `rgb(${R}, ${G}, ${B})`
+              let s1 = _this.random(0.1, 1, 'FIXED');
+              let s2 = _this.random(0.1, 1, 'FIXED');
+              circle.vx = s1 * _this.random(0, 100) > 50 ? -1 : 1;
+              circle.vy = s2 * _this.random(0, 100) > 50 ? -1 : 1;
+              if(_this.random(0, 10) > 5) {
+                circle.x = _this.random(0, 0, 'FIXED') - circle.radius; 
+                circle.y = _this.random(0, _this.getHeight(), 'FIXED');
+              } else {
+                circle.y = _this.random(0, 0, 'FIXED') - circle.radius; 
+                circle.x = _this.random(0, _this.getWidth(), 'FIXED')
+              }
+            }
+          } else if(mode === 2){
+            if(
+              (circle.x <= circle.radius || circle.x > _this.getWidth() - circle.radius)
+              || (circle.y <= circle.radius || circle.y > _this.getHeight() - circle.radius )
+            ) {
+              let R = Math.floor(Math.random() * 255);
+              let G = Math.floor(Math.random() * 255);
+              let B = Math.floor(Math.random() * 255);
+              if(circle.animateTimes > 30) {
+                circle.animateTimes = 0;
+                circle.color = `rgb(${R}, ${G}, ${B})`;
+              }
+              if(circle.x <= circle.radius) circle.x = circle.radius;
+              if(circle.x >= _this.getWidth() - circle.radius) circle.x = _this.getWidth() - circle.radius;
+              if(circle.y <= circle.radius) circle.y = circle.radius;
+              if(circle.y > _this.getHeight() - circle.radius) circle.y = _this.getHeight() - circle.radius;
+              let s1 = _this.random(0.1, 2, 'FIXED');
+              let s2 = _this.random(0.1, 2, 'FIXED');
+              circle.vx = s1 * _this.random(0, 100) > 50 ? -1 : 1;
+              circle.vy = s2 * _this.random(0, 100) > 50 ? -1 : 1;
             }
           }
           _this.draw(circle);
@@ -120,4 +154,5 @@
 
   let c = new Circle();
   c.start();
+  console.log(c.random(0.1, 1, 'FIXED'))
 }())
