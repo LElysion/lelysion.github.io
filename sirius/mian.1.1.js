@@ -61,8 +61,8 @@
         res.push({
           x: this.random(0, this.getWidth()),
           y: this.random(0, this.getHeight()),
-          vx: this.random(0.1, 1, 'FIXED'),
-          vy: this.random(0.1, 1, 'FIXED'),
+          vx: this.random(0.01, 2, 'FIXED'),
+          vy: this.random(0.01, 2, 'FIXED'),
           radius: radius,
           color: `rgb(${R}, ${G}, ${B})`,
           startAngle: 0,//开始弧度
@@ -98,18 +98,24 @@
           circle.x += circle.vx;//_this.random(0.05, 0.15, 'FIXED');
           circle.y += circle.vy;//_this.random(0.05, 0.15, 'FIXED');
           circle.globalAlpha -= _this.vglobalAlpha;
+          if(circle.animateTimes%360 === 0) {
+            console.log('触发')
+            circle.vx = circle.vx + _this.random(0.01, 1, 'FIXED') + (_this.random(0, 100) > 50 ? -1 : 1)
+            circle.vy = circle.vy + _this.random(0.01, 1, 'FIXED') + (_this.random(0, 100) > 50 ? -1 : 1)
+          }
 
           if(mode === 1) {
             if(circle.x >= _this.getWidth() + circle.radius || circle.y < -circle.radius) {
+              circle.animateTimes = 0;
               let R = Math.floor(Math.random() * 255);
               let G = Math.floor(Math.random() * 255);
               let B = Math.floor(Math.random() * 255);
               circle.radius = _this.random(10, 35)
               circle.color = `rgb(${R}, ${G}, ${B})`
-              let s1 = _this.random(0.1, 1, 'FIXED');
-              let s2 = _this.random(0.1, 1, 'FIXED');
-              circle.vx = s1 * _this.random(0, 100) > 50 ? -1 : 1;
-              circle.vy = s2 * _this.random(0, 100) > 50 ? -1 : 1;
+              let s1 = _this.random(0.01, 2, 'FIXED');
+              let s2 = _this.random(0.01, 2, 'FIXED');
+              circle.vx = s1 //* (_this.random(0, 100) > 50 ? -1 : 1);
+              circle.vy = s2 //* (_this.random(0, 100) > 50 ? -1 : 1);
               if(_this.random(0, 10) > 5) {
                 circle.x = _this.random(0, 0, 'FIXED') - circle.radius; 
                 circle.y = _this.random(0, _this.getHeight(), 'FIXED');
@@ -134,10 +140,10 @@
               if(circle.x >= _this.getWidth() - circle.radius) circle.x = _this.getWidth() - circle.radius;
               if(circle.y <= circle.radius) circle.y = circle.radius;
               if(circle.y > _this.getHeight() - circle.radius) circle.y = _this.getHeight() - circle.radius;
-              let s1 = _this.random(0.1, 2, 'FIXED');
-              let s2 = _this.random(0.1, 2, 'FIXED');
-              circle.vx = s1 * _this.random(0, 100) > 50 ? -1 : 1;
-              circle.vy = s2 * _this.random(0, 100) > 50 ? -1 : 1;
+              let s1 = _this.random(0.01, 2, 'FIXED');
+              let s2 = _this.random(0.01, 2, 'FIXED');
+              circle.vx = s1 * (_this.random(0, 100) > 50 ? -1 : 1);
+              circle.vy = s2 * (_this.random(0, 100) > 50 ? -1 : 1);
             }
           }
           _this.draw(circle);
