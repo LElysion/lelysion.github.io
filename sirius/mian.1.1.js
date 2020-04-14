@@ -31,12 +31,12 @@ function getQueryVariable(variable) {
   function Circle(
     x, y, vx, vy, radius, color, time
   ) {
-    this.x = x;
-    this.y = y;
-    this.vx = vx || 0;
-    this.vy = vy || 0;
-    this.radius = radius;
-    this.color = color;
+    this.x = x; // 渲染位置x
+    this.y = y; // 渲染位置y
+    this.vx = vx || 0; // 移动速率x
+    this.vy = vy || 0; // 移动速率y
+    this.radius = radius; // 圆直径
+    this.color = color; // 圆配色
     this.fps = 60;
     this.globalAlpha = 1;
     this.vglobalAlpha = 0.2;
