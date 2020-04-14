@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="container">
+    <h1>营销号生成器</h1>
+    <div class="form-item">
+      <label for="">主体</label>
+      <input type="text" id="main" value="明日方舟">
+    </div>
+    <div class="form-item">
+      <label for="">事件</label>
+      <input type="text" id="event" value="为什么升级快">
+    </div>
+    <div class="form-item">
+      <label for="">另一种说法</label>
+      <input type="text" id="other" value="碎石头就好了">
+    </div>
+    <div class="form-item">
+      <button id="button">生成</button>
+    </div>
+    <div class="result" id="result"></div>
+  </div>
+</body>
+<script>
+let main = document.getElementById('main');
+let event = document.getElementById('event');
+let other = document.getElementById('other');
+let result = document.getElementById('result');
+let button = document.getElementById('button');
+button.addEventListener('click', function() {
+  let mText = main.value;
+  let eText = event.value;
+  let oText = other.value;
+  result.innerHTML = `${mText}${eText}是怎么回事呢？${mText}相信大家都很熟悉，但是${mText}${eText}是怎么回事呢？下面就让小编带大家一起了解吧。<br/>${mText}${eText}，其实就是${oText}，大家可能会惊讶${mText}怎么会${eText}呢？但是事实就是这样，小编也感到非常惊讶。<br/>这就是关于${mText}${eText}的事情了，大家有什么想法呢，欢迎在评论区告诉小编一起讨论哦！`
+})
+
+
+</script>
+</html>
