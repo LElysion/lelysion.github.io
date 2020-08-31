@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div></div>
+</body>
+<script>
+  let weaponsDemo = [
+    { name: '刀', damage: 10, effect: () => { return { 
+      info: ``,
+      
+    }} }
+  ];
+  class Role {
+    constructor({weapons, skills, name, hp}) {
+      this.weapons = weapons;
+      this.skills = skills;
+      this.name = name;
+      this.hp = hp;
+    }
+    random(max = 100) {
+      return parseInt(Math.random() * (max + 1), 10); 
+    }
+    selectAttackType() {
+      return this.random() > 50 ? this.weapons[this.random(this.weapons.length)] : this.skills[this.random(this.skills.length)]
+    }
+    attack() {
+      let attackType = this.selectAttackType();
+      return {
+        info: `${this.name}使用了${attackType.name}, 造成了${attackType.damage}`,
+        action: {
+          type: `attack`,
+          damage: attackType.damage
+        }
+      }
+    }
+  }
+
+
+
+</script>
+</html>

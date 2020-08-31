@@ -14,35 +14,36 @@ function getQueryVariable(variable) {
   let NUMBERS = getQueryVariable('num');
 
   let canvas = document.getElementById('canvas');
+  let context = canvas.getContext('2d');
+  let timer = null;
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
   window.onresize = function () {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   }
-  canvas.addEventListener('click', function () {
+  canvas.addEventListener('click', function (event) {
     mode = mode == 1 ? 2 : 1;
+    console.log({ event })
   })
-  let context = canvas.getContext('2d');
-  let timer = null;
 
   context.globalAlpha = 0.5;
 
   function Circle(
     x, y, vx, vy, radius, color, time
   ) {
-    this.x = x; // 渲染位置x
-    this.y = y; // 渲染位置y
-    this.vx = vx || 0; // 移动速率x
-    this.vy = vy || 0; // 移动速率y
-    this.radius = radius; // 圆直径
-    this.color = color; // 圆配色
-    this.fps = 60;
-    this.globalAlpha = 1;
-    this.vglobalAlpha = 0.2;
-    this.startAngle = 0;
-    this.endAngel = 0;
-    this.animateTimes = 0;
+    // this.x = x; // 渲染位置x
+    // this.y = y; // 渲染位置y
+    // this.vx = vx || 0; // 移动速率x
+    // this.vy = vy || 0; // 移动速率y
+    // this.radius = radius; // 圆直径
+    // this.color = color; // 圆配色
+    // this.fps = 60;
+    // this.globalAlpha = 1;
+    // this.vglobalAlpha = 0.2;
+    // this.startAngle = 0;
+    // this.endAngel = 0;
+    // this.animateTimes = 0;
   }
 
   Circle.prototype = {

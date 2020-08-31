@@ -7,26 +7,19 @@
   <title>LElysion.World</title>
   <link rel="stylesheet" href="css/css.css">
   <style>
-    .container { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; width: 100vw; }
-    .box { width: 70vw; height: 20vh; padding: 12px; margin: 12px; text-align: center; box-shadow: 0 0 10px #eec; }
+    .container { text-align: center; }
+    .link { color: lightskyblue; }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="box">
-      距离元旦放假还有：<span id="yuandan"></span>天
+    <div>
+      最喜欢的乐队是： <a href="https://baike.baidu.com/item/Sound%20Horizon/1733384?fr=aladdin" target="_blank" class="link">sound horizon</a>
     </div>
-    <div class="box">
-      距离春节放假还有：<span id="chunjie"></span>天
-    </div>
-
   </div>
 </body>
 <script>
-  let yuandan = document.getElementById('yuandan');
-  yuandan.innerText = Math.floor((new Date('2020/1/1').getTime() - new Date().getTime() ) / 86400000)
-  let chunjie = document.getElementById('chunjie');
-  chunjie.innerText = Math.floor((new Date('2020/1/24').getTime() - new Date().getTime() ) / 86400000)
+  console.log('welcome')
 </script>
 <script src="js/main.js"></script>
 </html>
