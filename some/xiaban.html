@@ -7,7 +7,7 @@
   <style>
     html, body, p{ padding: 0; margin: 0; }
     body{ overflow: hidden; }
-    .page { display: flex; justify-content: center; align-items: center; height: 100vh; width: 100vw; overflow: hidden; }
+    .page { display: flex; justify-content: center; align-items: center; height: 100vh; width: 100vw; overflow: hidden; flex-direction: column; }
     #dom {
       font-size: 16px;
       color: #666;
@@ -17,18 +17,29 @@
 <body>
   <div class="page">
     <div id="dom"></div>
+    <div id="dom2"></div>
   </div>
 </body>
 <script>
-  let dom = document.getElementById('dom')
+  let type = false;
+  let dom = document.getElementById('dom');
+  let dom2 = document.getElementById('dom2');
   getTime()
   function getTime() {
     let now = new Date();
-    let xiaban = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 18, 0);
+    let xiaban = new Date(2020, 8, 30, 18, 0);
+    let pang = new Date(2020,8,29,17,0)
     let result = xiaban.getTime() - now.getTime();
-    let minute = parseInt(result/60000);
-    let second = parseInt((result - minute * 60000)/1000)
-    dom.innerHTML = result > 0 ? `距离下班还有 ${minute} 分钟 ${second} 秒` : `恭喜，已下班`;
+    let pangRes = pang.getTime() - now.getTime();
+    let hour = Math.floor(result / (60 * 60 * 1000));
+    let minute = Math.floor((result - hour*60*60*1000)/(60*1000));
+    let second = parseInt((result -hour*60*60*1000- minute * 60000)/1000)
+    let hour2 = Math.floor(pangRes / (60 * 60 * 1000));
+    let minute2 = Math.floor((pangRes - hour2*60*60*1000)/(60*1000));
+    let second2 = parseInt((pangRes -hour2*60*60*1000- minute2 * 60000)/1000)
+    dom.innerHTML = result > 0 ? `距离放假还有 ${hour} 小时 ${minute} 分钟 ${second} 秒` : `恭喜，已放假`;
+    dom2.innerHTML = pangRes > 0 ? `胖哥距离放假还有 ${hour2} 小时 ${minute2} 分钟 ${second2} 秒` : `恭喜，已放假`;
+
     return setTimeout(() => {
       getTime();
     }, 1000)
